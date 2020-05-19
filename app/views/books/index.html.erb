@@ -1,0 +1,12 @@
+<!-- 部分テンプレート(User info&New book) -->
+<%= render 'users/list',user:@user %>
+<%= render 'books/list',book:@book %>
+<!-- 投稿一覧 -->
+<h1>Books</h1>
+<% @books.each do |book| %>
+	<%= book.user.profile_image_id %>
+	<p>Title</p>
+	<span><%= book.title %></span>
+	<p>Opinion</p>
+	<span><%= book.body %></span>
+<% end %>

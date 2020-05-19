@@ -1,0 +1,22 @@
+<!-- マイページ -->
+
+
+<h1>Books</h1>
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Opinion</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%= @user.posts.each do |post| %>
+		<tr>
+			<td><%= post.title %></td>
+			<td><%= post.body %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= render 'users/list',user:@user %>
+<%= render 'books/list',book:@book %>
