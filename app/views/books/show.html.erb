@@ -1,0 +1,28 @@
+<!-- 部分テンプレート(User info&New book) -->
+<%= render 'users/list',user:@user %>
+<%= render 'books/list',book:@book %>
+<!-- 投稿一覧 -->
+<h1>Book detail</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg',class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+			<td><%= @book.user.profile_image_id %></td>
+			<td><%= @book.user.name %></td>
+			<td><%= @book.title %></td>
+			<td><%= @book.body %></td>
+		 <% if @book.user == current_user %>
+			<td><%= link_to "Edit",edit_book_path(@book)%></td>
+			<td><%= link_to "Destroy",book_path(@book), method: :delete ,data:{ confirm: '本当に消しますか？'} %></td>
+			<!-- method: :deleteはGETメソッドからDELETEメソッドへ指定 -->
+			<!-- data:{confirm:''} はダイヤログ表示 -->
+		 <% end %>
+		</tr>
+	</tbody>
+</table>

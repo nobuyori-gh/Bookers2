@@ -1,7 +1,24 @@
+<!-- 部分テンプレート(User info&New book) -->
+<%= render 'users/list',user:@user %>
+<%= render 'books/list',book:@book %>
+
+<!-- User一覧 -->
 <h1>Users</h1>
-<% @users.each do |user| %>
-	<p>image</p>
-	<%= user.profile_image_id %>
-	<p>name</p>
-	<span>user.name</span>
-<% end %>
+
+<table>
+	<thead>
+		<tr>
+			<th>Image</th>
+			<th>name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg',class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+			<td><%= user.name %></td>
+			<td><%= link_to "Show",user_path(user.id) %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

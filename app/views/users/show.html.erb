@@ -1,5 +1,7 @@
 <!-- マイページ -->
 
+<%= render 'users/list',user:@user %>
+<%= render 'books/list',book:@book %>
 
 <h1>Books</h1>
 <table>
@@ -18,5 +20,3 @@
 		<% end %>
 	</tbody>
 </table>
-<%= render 'users/list',user:@user %>
-<%= render 'books/list',book:@book %>

@@ -8,6 +8,9 @@ class User < ApplicationRecord
   validates :introduction, length: {maximum: 50}
 
   has_many :books, dependent: :destroy
+  # User1に対して複数のbooksインスタンスを持つ
+  # dependent: :destroyの意味
+  # Userクラスが消えると、Bookモデルのbooksインスタンスも消える
   attachment :profile_image
 
   def posts

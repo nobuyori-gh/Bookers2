@@ -1,10 +1,21 @@
 <h1>User info</h1>
-	 <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg',
-	 	class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-	<p>name</p>
-	<p><%= user.name %></p>
-	<p>intriduction</p>
-	<p><%= user.introduction %></p>
+
+<table>
+	<thead>
+		<tr>
+			<th>name</th>
+			<th>Introduction</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg',
+	 	class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+	 		<td><%= user.name %></td>
+	 		<td><%= user.introduction %></td>
+		</tr>
+	</tbody>
+</table>
 	<% if user.id == current_user.id %>
-    <p><%= link_to "編集", edit_user_path(user), class: "pull-right" %></p>
+    <p><%= link_to "編集マーク", edit_user_path(user), class: "pull-right" %></p>
     <% end %>
