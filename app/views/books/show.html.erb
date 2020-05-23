@@ -1,10 +1,15 @@
+<div class="row">
+  <div class="col-xs-3">
 <!-- 部分テンプレート(User info&New book) -->
 <%= render 'users/list',user:@user %>
 <%= render 'books/list',book:@book %>
-<!-- 投稿一覧 -->
-<h1>Book detail12</h1>
+ </div>
 
-<table>
+ <div class="col-xs-9">
+<!-- 投稿一覧 -->
+<h1>Book detail</h1>
+
+<table class="table">
 	<thead>
 		<tr>
 			<th></th>
@@ -12,17 +17,22 @@
 	</thead>
 	<tbody>
 		<tr>
-			<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg',class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-			<td><%= @book.user.profile_image_id %></td>
-			<td><%= @book.user.name %></td>
+			<td>
+			  <%= link_to user_path(@book.user_id) do %>
+			    <%= attachment_image_tag @user, :profile_image, size: "40x40", format: 'jpeg', fallback: "no_image.jpg" %>
+				<div class="masu"><%= @book.user.name %></div>
+			  <% end %>
+			</td>
 			<td><%= @book.title %></td>
 			<td><%= @book.body %></td>
-		 <% if @book.user == current_user %>
-			<td><%= link_to "Edit",edit_book_path(@book)%></td>
-			<td><%= link_to "Destroy",book_path(@book), method: :delete ,data:{ confirm: '本当に消しますか？'} %></td>
+		 <% if current_user.id == @book.user_id %>
+			<td><%= link_to "Edit",edit_book_path(@book), class:"btn-sm btn-success edit_book"%></td>
+			<td><%= link_to "Destroy",book_path(@book), class:"btn-sm btn-danger destroy_book", method: :delete ,data:{ confirm: '本当に消しますか？'} %></td>
 			<!-- method: :deleteはGETメソッドからDELETEメソッドへ指定 -->
 			<!-- data:{confirm:''} はダイヤログ表示 -->
 		 <% end %>
 		</tr>
 	</tbody>
 </table>
+</div>
+</div>
