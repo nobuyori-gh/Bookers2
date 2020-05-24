@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!,only: [:index,:show,:edit]
 
-
 	def new
 		@book = Book.new
 	end
@@ -33,19 +32,11 @@ class BooksController < ApplicationController
 		@user = User.find_by(id:@book.user_id)
 	end
 
-	# def ensure_correct_user
-	# 	@book = Book.find_by(id:params[:id])
-	# 	if @book.user_id != @current_user.id
-	# 		flash[:notice] = "権限がありません"
-	# 		redirect_to book_path
-	# 	end
-	# end
-
 	def edit
 		@book = Book.find(params[:id])
 		@user = User.find_by(id:@book.user_id)
 		if current_user != @user
-  	 	  redirect_to book_path(@book)
+  	 	  redirect_to books_path
     	end
 	end
 
